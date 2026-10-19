@@ -1,28 +1,21 @@
-# Photos folder
+# NP — Photography portfolio
 
-Organized by primary category — this is just for YOUR convenience while
-sorting files, the website code does not care which folder a file sits in.
+Single-file site (`index.html`), no external requests, published with GitHub Pages.
 
-  photos/
-    architecture/
-    fashion/
-    wedding/
+## Structure of `photos/`
+    photos/<category>/<group>/<series>/*.webp     e.g. photos/fashion/NANTES FASHION WEEK/EXPORT CUZIN/IMG_1.webp
+    photos/<category>/<series>/*.webp             e.g. photos/wedding/MARIAGE KEMEL & FERDI/IMG_1.webp
+Categories: `architecture` (personal), `fashion` and `wedding` (commercial).
+One series folder = one tile in the grid; clicking it opens the gallery.
 
-## One photo, several tags
-Put the file in whichever folder makes sense to you (e.g. its main category),
-then reference it in index.html and list ALL its tags separated by spaces:
+## After adding / renaming photos
+Run `python tools/build_index.py` at the repo root (needs Python 3), then commit `index.html`.
+- Tile cover = first photo (natural order). To force another one, name it `cover.webp` inside the series folder.
+- Tile title = folder name (prefixes `EXPORT`, `MARIAGE`, `Défilé` are dropped).
 
-  <div class="proj__frame" style="background-image:url('photos/fashion/look-04.jpg')"></div>
-  ...
-  <article class="proj" data-type="commercial" data-category="fashion wedding">
+## To fill in
+- Contact email: search `hello@np-photo.com` in `index.html` (placeholder).
+- Instagram link in the footer (`href="#"`).
 
-That photo will now appear under both the Fashion and the Weddings filters.
-Same idea works for data-type="personal commercial" if a photo genuinely
-belongs to both.
-
-## New category later
-1. Add a folder here (e.g. photos/portrait/).
-2. Add a filter button in index.html's Category row.
-3. Use data-category="portrait" (alone or combined with others) on your photos.
-
-Keep files compressed for web (roughly 500KB–1MB each, JPEG) so the site stays fast.
+## Cleanup
+The `archivo-*.woff2` files at the repo root are no longer used (font is embedded in `index.html`) and can be deleted.
